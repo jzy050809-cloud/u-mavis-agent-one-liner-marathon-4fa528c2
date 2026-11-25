@@ -7,7 +7,10 @@
 import { copyFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+// The grader sets /output; local runs can point elsewhere via the env var.
+const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+
 copyFileSync(
   new URL('./entry.txt', import.meta.url),
-  join(process.env.MAKEFUN_OUTPUT_DIR ?? '/output', 'entry.txt'),
+  join(outputDir, 'entry.txt'),
 );
